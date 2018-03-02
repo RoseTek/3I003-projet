@@ -2,7 +2,7 @@ SRCS	=	$(shell find Src -name '*.c')
 
 OBJS	=	$(SRCS:.c=.o)
 
-NAME	=	Tomo
+NAME	=	tomo
 
 RM	=	rm -f
 

@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include "my.h"
 
-/* FONCTIONS D'AFFICHAGE STRUCTURE */
-
+/* AFFICHAGE SEQUENCE */
 static void show_seq(int **sequence, int size, char type){
     int i, n;
 
@@ -18,10 +17,10 @@ static void show_seq(int **sequence, int size, char type){
     }
 }
 
-/* Pour afficher l'etat de la grille et l'ensemble l'ensemble des sequences pour les lignes et les colonnes */
+/* AFFICHAGE INFO GRILLE */
 void showWholeGrille(tGrille *grille){
   int i,n;
-  printf("Matrice a %d lignes, %d colonnes :\n", grille->nb_Lig, grille->nb_Col); 
+  printf("Matrice a %d lignes, %d colonnes :\n", grille->nb_Lig, grille->nb_Col);
   for (i=0 ; i<grille->nb_Lig ; i++){
   	for (n=0 ; n<grille->nb_Col ; n++)
   	    printf("%d ", grille->matrice[i][n]);
@@ -33,7 +32,7 @@ void showWholeGrille(tGrille *grille){
   show_seq(grille->seqCol, grille->nb_Col, 'C');
 }
 
-/* Pour afficher l'etat de la grille */
+/* AFFICHAGE GRILLE */
 void showGrille(tGrille *grille){
   int i,n;
   for (i=0 ; i<grille->nb_Lig ; i++){
@@ -106,4 +105,19 @@ tGrille *init_grille(char *file){
     init_seq(f, grille->seqCol, grille->nb_Col);
     fclose(f);
     return grille;
+}
+
+void freeGrille(tGrille *grille){
+  int i;
+  
+  for (i=0 ; i<grille->nb_Lig ; i++)
+    free(grille->matrice[i]);
+  free(grille->matrice);
+  for (i=0; i<grille->nb_Lig; i++)
+    free(grille->seqLig[i]);
+  free(grille->seqLig);
+  for (i=0; i<grille->nb_Col; i++)
+    free(grille->seqCol[i]);
+  free(grille->seqCol);
+  free(grille);
 }

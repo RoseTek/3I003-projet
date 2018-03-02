@@ -12,10 +12,14 @@ typedef struct sGrille{
     int **seqCol;
 }tGrille;
 
+void freeGrille(tGrille *grille);
 tGrille *init_grille(char *file);
 void showGrille(tGrille *grille);
 int enumeration(tGrille *grille, int k_case, int color);
+int propagation(tGrille *grille);
 int nb_seqLig(int lig, tGrille *grille);
+int nb_seqCol(int col, tGrille *grille);
 int TestVecteurLigne(tGrille *grille, int ligne);
+int TestVecteurCol(tGrille *grille, int col);
 
 #endif
